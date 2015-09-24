@@ -1,28 +1,142 @@
 == README
+Stories is making a landing page for their upcoming travel journal app. Here's what it looks like. On the contact page when a user enters her contact information, it is saved into the app's database.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To build this app, you'll use:
 
-Things you may want to cover:
+HTML and CSS for the front end
+Rails for the back end
+Git to manage your code
+Heroku to deploy your app
+GitHub to share your code with others
+To preview your app at any point:
 
-* Ruby version
+In the terminal, type rails s -p 8080
+In the browser, visit http://localhost:8080
+Mark each task as complete by checking them off
+Setup
+1.
+Create a new Rails app named stories.
+2.
+After you create the new app, switch to its folder. In the terminal, type:
 
-* System dependencies
+$ cd stories
 
-* Configuration
+3.
+Install the gems specified in the Gemfile.
+4.
+Generate a controller named Pages.
+5.
+Set up the layout file (app/views/layouts/application.html.erb):
 
-* Database creation
+In the <head> below the <title>, add CSS for Bootstrap. Follow the instructions here. Use the latest compiled and minified CSS, and not the optional theme.
+Add CSS for a web font. Browse web fonts here, and choose one to use in this app.
+Make sure all CSS URLs start with https.
+Move this line from the <head> and place it just before the </body> tag:
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+This line includes all of your app's JavaScript files, including jQuery, as new <script> elements. By placing this line just before the </body> tag, the page's HTML will load first before the JavaScript applies to the HTML.
+Make a home page
+6.
+In the Pages controller, make an action named home.
+7.
+In the routes file, set the home action as the root route.
+8.
+Create a view named app/views/pages/home.html.erb and style it in app/assets/stylesheets/pages.css.scss:
 
-* Database initialization
+Add a main section with a heading and a 'Learn more' button. Use your own image for the background image of the main section.
+Add a supporting section with a subheading and tagline
+Add a secondary section with a background image. Use your own image.
+Add a discover section with a subheading and a 'Learn more' button.
+Add a footer.
+To use images, first add image files to app/assets/images/. Then use the images in HTML or CSS as shown here.
+9.
+Create a navigation menu that slides out from the left side. Write your JavaScript code in app/assets/javascripts/application.js.
 
-* How to run the test suite
+Here are two examples of possible ways to create this menu.
+Here are menu icons (menu-black, menu-white) and close icons (close-black, close-white).
+10.
+Run the local server to view the result at http://localhost:8000.
+11.
+Put your app under version control with Git. Then push it up to GitHub. Check out the instructions here.
+12.
+Deploy your app to Heroku. Check out the instructions here.
+Make an about page
+13.
+The about page has the same navigation menu and footer as the home page. Instead of writing the same code twice, refactor the navigation menu and footer from the home page and place them into application.html.erb so that they are available to all pages in the app.
+14.
+Make a new controller action and a new route for the about page.
+15.
+Create a view for the about page and style it
 
-* Services (job queues, cache servers, search engines, etc.)
+Add a main section with a heading. Use your own background image for the main section.
+Add a supporting section with a subheading, tagline, and 'Signup' button.
+16.
+In the navigation menu, use the link_to helper to generate links to the home page and about page.
+17.
+In the home page, use link_to to generate both 'Learn more' links pointing to the about page.
+18.
+Run the local server to view the result at http://localhost:8000.
+19.
+Commit the changes using Git, and push up to GitHub.
+20.
+Deploy your app to Heroku.
+Make a contact page
+21.
+Using the request/response cycle as a guide, there are two things to handle:
 
-* Deployment instructions
+In the first turn of the request/response cycle, the signup form is displayed to the user via a GET request.
+When the user fills out the form and submits it, it triggers the second turn of the request/response cycle, where the user's info is sent to the app via a POST request and saved into the database.
+Generate a model named Signup.
+22.
+Open the migration file and add a string column called firstname and a string column called email.
+23.
+Run the migration to update the database.
+24.
+Generate a controller named Signups.
+25.
+In the routes file, add the resource route for the Signups controller.
+26.
+Set up the Signups new action to handle GET requests by displaying the signup form:
 
-* ...
+In the Signups controller, make an action named new that creates a new Signup object.
+Create a view named app/views/signups/new.html.erb and style it in app/assets/stylesheets/signups.css.scss. Add a heading, a form, and your own background image.
+27.
+In the navigation menu, use link_to to generate links to the contact page.
+28.
+In the about page, use link_to to generate the 'Sign up' links pointing to the contact page.
+29.
+Run the local server to view the result at http://localhost:8000.
+30.
+Set up the Signups create action to handle POST requests by saving user info to the database:
 
+In the Signups controller, write a private method named signup_params. Require the model name signup and permit the columns firstname and email.
+Then make an action named create. Use signup_params to create a new Signup object. After saving to the database, redirect to the thanks page. We'll set this page up next.
+Make a thanks page
+31.
+The thanks page is what users see after successfully submitting their name and email.
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+In the Pages controller, make a new action and a new route for the thanks page.
+32.
+Create a view for the thanks page and style it. Add a thank you message and a background image.
+Check that signups save to the local database
+33.
+View the app by starting a local web server.
+34.
+In the contact page, type in your name and email address, and submit the form.
+35.
+Check that your info saved to your local database. Start the local Rails console and retrieve all signups in the database. Your info should show up in the results.
+Check that signups save to the production database
+36.
+Commit all your changes using Git, and push up to GitHub.
+37.
+Deploy your app to Heroku. Make sure to migrate the database as shown in step 11.
+38.
+In the contact page, type in your name and email address, and submit the form.
+39.
+Check that your info saved to the production database on Heroku. Start the production Rails console by running
+
+$ heroku run rails console
+
+and retrieve all signups in the database. Your info should show up in the results.
+Add this app to your portfolio
+40.
+Add this project to your portfolio, which you started here. Include a screenshot, title, description, and link this app in the list of projects on your portfolio page.
